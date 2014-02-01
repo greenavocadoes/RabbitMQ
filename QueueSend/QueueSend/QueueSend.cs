@@ -9,16 +9,47 @@ namespace QueueSend
 {
     public class QueueSend : IDisposable
     {
-      
-        private ConnectionFactory factory = new ConnectionFactory() {HostName = "localhost"};
+
+
+        private ConnectionFactory factory = new ConnectionFactory();
+
+        private IConnection connection;
+        private IModel channel;
+        private string exch;
+        
+        public QueueSend(String host, String exchName)
+        {
+            factory.HostName = host;
+            connection = factory.CreateConnection();
+            
+            channel = connection.CreateModel();
+            channel.ExchangeDeclare(exchName, "fanout");
+            exch = exchName;
+        }
+
+        public void Send(string message)
+        {
+            var body = Encoding.UTF8.GetBytes(message);
+            channel.BasicPublish(exch, "", null, body);
+        }
+
+       
+
+
+        /*
+        private ConnectionFactory factory = new ConnectionFactory() ;
+
+
         private IConnection connection;
         private IModel channel;
         
-        public QueueSend()
+        public QueueSend(String host, String queueName)
         {
+            factory.HostName = host;
             connection = factory.CreateConnection();
+            
             channel = connection.CreateModel();
-            channel.QueueDeclare("hello", false, false, false, null);
+            channel.QueueDeclare(queueName, false, false, false, null);
 
         }
 
@@ -27,13 +58,15 @@ namespace QueueSend
             var body = Encoding.UTF8.GetBytes(message);
             channel.BasicPublish("", "hello", null, body);
         }
-
+        */
 
 
         public void Dispose()
         {
-            channel.Close();
-            connection.Close();
+            if (connection != null)
+                connection.Close();
+            if (channel != null)
+                channel.Abort();
         }
     }
 }
