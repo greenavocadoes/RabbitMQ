@@ -86,7 +86,9 @@ namespace ChatUI
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
+            consumer.Dispose();
             queue.Dispose();
+            Application.Exit();
         }
 
 

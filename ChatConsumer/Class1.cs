@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Exceptions;
+using System.IO;
 
 namespace ChatConsumer
 {
@@ -59,6 +60,11 @@ namespace ChatConsumer
                     onMessageReceived(body);
                     Model.BasicAck(e.DeliveryTag, false);
                 }
+                catch (EndOfStreamException ex) {
+            	    // The consumer was cancelled, the model closed, or the
+            	    // connection went away.
+            	    break;
+            	}
                 catch (OperationInterruptedException ex)
                 {
                     // The consumer was removed, either through
@@ -71,6 +77,7 @@ namespace ChatConsumer
 
         public void Dispose()
         {
+            isConsuming = false;
             if (Model != null)
                 Model.Close();
             if (Connection != null)
