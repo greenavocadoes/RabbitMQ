@@ -17,7 +17,9 @@ namespace ChatUI
     {
         private QueueSend.QueueSend queue;
         private Consumer consumer;
-        private const String HOST_NAME = "localhost";
+        //private const String HOST_NAME = "localhost";
+        private const String HOST_NAME = "ec2-54-213-74-83.us-west-2.compute.amazonaws.com";
+        private const int NODE = 5672;
         private const String QUEUE_NAME = "hello";
         delegate void SetTextCallback(string text);
         private String _chatter;

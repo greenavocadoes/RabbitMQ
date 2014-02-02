@@ -20,6 +20,7 @@ namespace QueueSend
         public QueueSend(String host, String exchName)
         {
             factory.HostName = host;
+            //factory.Port = 5672;
             connection = factory.CreateConnection();
             
             channel = connection.CreateModel();
@@ -63,10 +64,11 @@ namespace QueueSend
 
         public void Dispose()
         {
+            if (channel != null)
+                channel.Close();
             if (connection != null)
                 connection.Close();
-            if (channel != null)
-                channel.Abort();
+           
         }
     }
 }

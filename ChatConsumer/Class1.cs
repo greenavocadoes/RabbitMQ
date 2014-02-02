@@ -8,7 +8,7 @@ using RabbitMQ.Client.Exceptions;
 
 namespace ChatConsumer
 {
-    public class Consumer
+    public class Consumer :IDisposable
     {
         protected IModel Model;
         protected IConnection Connection;
@@ -24,6 +24,7 @@ namespace ChatConsumer
         {
             ConnectionFactory connectionFactory = new ConnectionFactory();
             connectionFactory.HostName = hostName;
+            //connectionFactory.Port = 5672;
             Connection = connectionFactory.CreateConnection();
             Model = Connection.CreateModel();
             //Model.QueueDeclare(QueueName, false, false, false, null);
@@ -70,11 +71,11 @@ namespace ChatConsumer
 
         public void Dispose()
         {
-            isConsuming = false;
+            if (Model != null)
+                Model.Close();
             if (Connection != null)
                 Connection.Close();
-            if (Model != null)
-                Model.Abort();
+        
         }
     }
 }
