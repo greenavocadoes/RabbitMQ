@@ -19,8 +19,7 @@ namespace QueueSend
         
         public QueueSend(String host, String exchName)
         {
-            factory.HostName = host;
-            //factory.Port = 5672;
+            factory.HostName = host;            
             connection = factory.CreateConnection();
             
             channel = connection.CreateModel();
@@ -34,33 +33,8 @@ namespace QueueSend
             channel.BasicPublish(exch, "", null, body);
         }
 
-       
-
-
-        /*
-        private ConnectionFactory factory = new ConnectionFactory() ;
-
-
-        private IConnection connection;
-        private IModel channel;
-        
-        public QueueSend(String host, String queueName)
-        {
-            factory.HostName = host;
-            connection = factory.CreateConnection();
-            
-            channel = connection.CreateModel();
-            channel.QueueDeclare(queueName, false, false, false, null);
-
-        }
-
-        public void Send(string message)
-        {
-            var body = Encoding.UTF8.GetBytes(message);
-            channel.BasicPublish("", "hello", null, body);
-        }
-        */
-
+   
+   
 
         public void Dispose()
         {

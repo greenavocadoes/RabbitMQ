@@ -17,10 +17,11 @@ namespace ChatUI
     {
         private QueueSend.QueueSend queue;
         private Consumer consumer;
-        //private const String HOST_NAME = "localhost";
-        private const String HOST_NAME = "ec2-54-213-74-83.us-west-2.compute.amazonaws.com";
+        private const String HOST_NAME = "localhost";
+        // Use a publicly known DNS name here. Ask Ankit if you need one.
+        // private const String HOST_NAME = "";
         private const int NODE = 5672;
-        private const String QUEUE_NAME = "hello";
+        private const String EXCH_NAME = "chatExch";
         delegate void SetTextCallback(string text);
         private String _chatter;
         public Form1()
@@ -40,11 +41,11 @@ namespace ChatUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            queue = new QueueSend.QueueSend(HOST_NAME, QUEUE_NAME);
+            queue = new QueueSend.QueueSend(HOST_NAME, EXCH_NAME);
 
             // Subscribe to the queue
             //create the consumer
-            consumer = new Consumer(HOST_NAME, QUEUE_NAME);
+            consumer = new Consumer(HOST_NAME, EXCH_NAME);
 
             //listen for message events
             consumer.onMessageReceived += handleMessage;
@@ -79,7 +80,7 @@ namespace ChatUI
         private void button1_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(this.textBox1.Text))
-                queue.Send(String.Format("{0}:{1}", Chatter, textBox1.Text));
+                queue.Send(String.Format("{0}: {1}", Chatter, textBox1.Text));
 
             textBox1.Clear();
         }

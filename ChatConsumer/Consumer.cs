@@ -25,10 +25,10 @@ namespace ChatConsumer
         {
             ConnectionFactory connectionFactory = new ConnectionFactory();
             connectionFactory.HostName = hostName;
-            //connectionFactory.Port = 5672;
+            
             Connection = connectionFactory.CreateConnection();
             Model = Connection.CreateModel();
-            //Model.QueueDeclare(QueueName, false, false, false, null);
+            
             QueueName = Model.QueueDeclare(); ;
             Model.ExchangeDeclare(exchName, "fanout");
             Model.QueueBind(QueueName, exchName, "");
@@ -56,7 +56,7 @@ namespace ChatConsumer
                     RabbitMQ.Client.Events.BasicDeliverEventArgs e = (RabbitMQ.Client.Events.BasicDeliverEventArgs)consumer.Queue.Dequeue();
                     IBasicProperties props = e.BasicProperties;
                     byte[] body = e.Body;
-                    // ... process the message
+                    
                     onMessageReceived(body);
                     Model.BasicAck(e.DeliveryTag, false);
                 }
