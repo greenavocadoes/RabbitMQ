@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatUI", "ChatUI\ChatUI.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueSend", "..\QueueSend\QueueSend\QueueSend.csproj", "{3159D75A-E7C8-44C6-8815-E741453F1D94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultipleChats", "..\MultipleChats\MultipleChats.csproj", "{A492677F-6932-4EA2-98A5-E620D4ED35A4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatConsumer", "..\ChatConsumer\ChatConsumer.csproj", "{7E3C7ECF-4009-46F5-AEF3-296CAA871F59}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaDataService", "..\MetaDataService\MetaDataService.csproj", "{90771FD9-0C61-4373-90D5-6DAD552C74A4}"
@@ -25,10 +23,6 @@ Global
 		{3159D75A-E7C8-44C6-8815-E741453F1D94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3159D75A-E7C8-44C6-8815-E741453F1D94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3159D75A-E7C8-44C6-8815-E741453F1D94}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A492677F-6932-4EA2-98A5-E620D4ED35A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A492677F-6932-4EA2-98A5-E620D4ED35A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A492677F-6932-4EA2-98A5-E620D4ED35A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A492677F-6932-4EA2-98A5-E620D4ED35A4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7E3C7ECF-4009-46F5-AEF3-296CAA871F59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7E3C7ECF-4009-46F5-AEF3-296CAA871F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E3C7ECF-4009-46F5-AEF3-296CAA871F59}.Release|Any CPU.ActiveCfg = Release|Any CPU

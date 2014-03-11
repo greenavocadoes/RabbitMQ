@@ -46,7 +46,7 @@ namespace MetaDataService
 
         public void getExchanges()
         {
-            var response = await makeAPICall("api/exchanges", "GET");            
+            //var response = await makeAPICall("api/exchanges", "GET");            
             int i = 0;        
 
         
