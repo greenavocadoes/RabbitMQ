@@ -32,6 +32,7 @@ namespace ChatConsumer
             QueueName = Model.QueueDeclare(); ;
             Model.ExchangeDeclare(exchName, "fanout");
             Model.QueueBind(QueueName, exchName, "");
+                        
 
         }
 
