@@ -17,7 +17,7 @@ namespace ChatUI
     {
         private QueueSend.QueueSend queue;
         private Consumer consumer;
-        private const String HOST_NAME = "localhost";
+        private const String HOST_NAME = "ec2-54-213-74-83.us-west-2.compute.amazonaws.com";
         // Use a publicly known DNS name here. Ask Ankit if you need one.
         // private const String HOST_NAME = "";
         private const int NODE = 5672;
@@ -41,11 +41,11 @@ namespace ChatUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            queue = new QueueSend.QueueSend(HOST_NAME, EXCH_NAME);
+            queue = new QueueSend.QueueSend(HOST_NAME, EXCH_NAME, Chatter);
 
             // Subscribe to the queue
             //create the consumer
-            consumer = new Consumer(HOST_NAME, EXCH_NAME);
+            consumer = new Consumer(HOST_NAME, EXCH_NAME, Chatter);
 
             //listen for message events
             consumer.onMessageReceived += handleMessage;

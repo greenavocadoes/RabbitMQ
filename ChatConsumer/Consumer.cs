@@ -21,10 +21,11 @@ namespace ChatConsumer
         public delegate void onReceiveMessage(byte[] message);
         public event onReceiveMessage onMessageReceived;
 
-        public Consumer(string hostName, string exchName)
+        public Consumer(string hostName, string exchName, string chatter)
         {
             ConnectionFactory connectionFactory = new ConnectionFactory();
             connectionFactory.HostName = hostName;
+            connectionFactory.ClientProperties.Add("Chatter", chatter);
             
             Connection = connectionFactory.CreateConnection();
             Model = Connection.CreateModel();
@@ -61,16 +62,11 @@ namespace ChatConsumer
                     onMessageReceived(body);
                     Model.BasicAck(e.DeliveryTag, false);
                 }
-                catch (EndOfStreamException ex) {
-            	    // The consumer was cancelled, the model closed, or the
-            	    // connection went away.
+                catch (EndOfStreamException ex) {            	 
             	    break;
             	}
                 catch (OperationInterruptedException ex)
-                {
-                    // The consumer was removed, either through
-                    // channel or connection closure, or through the
-                    // action of IModel.BasicCancel().
+                {   
                     break;
                 }
             }

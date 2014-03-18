@@ -17,12 +17,18 @@ namespace QueueSend
         private IModel channel;
         private string exch;
         
-        public QueueSend(String host, String exchName)
+        public QueueSend(String host, String exchName, String chatter)
         {
             factory.HostName = host;            
+            factory.ClientProperties.Add("Chatter", chatter);
             connection = factory.CreateConnection();
             
+            
+            
             channel = connection.CreateModel();
+            
+            
+            IBasicProperties props = channel.CreateBasicProperties();            
             channel.ExchangeDeclare(exchName, "fanout");
             exch = exchName;
         }
