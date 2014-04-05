@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatUI
+namespace MessageClient
 {
     public class ServiceDispatcher
     {

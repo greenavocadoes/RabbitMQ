@@ -8,13 +8,13 @@ using System.Text;
 using System.Windows.Forms;
 using MetaDataService;
 
-namespace ChatUI
+namespace MessageClient
 {
-    public partial class MainForm : Form
+    public partial class frmLogin : Form
     {
         
         private ChatBrokerService brokerSerice; 
-        public MainForm()
+        public frmLogin()
         {
             InitializeComponent();
             brokerSerice = new ChatBrokerService("http://ec2-54-213-74-83.us-west-2.compute.amazonaws.com", "guest", "guest");
@@ -29,7 +29,7 @@ namespace ChatUI
         {
             if (brokerSerice.isNameAvailable(textBox1.Text))
             {
-                Form1 frm = new Form1();
+                frmChat frm = new frmChat();
                 frm.Text = String.Format("{0} says...", textBox1.Text);
                 frm.Chatter = textBox1.Text;
                 frm.Show();

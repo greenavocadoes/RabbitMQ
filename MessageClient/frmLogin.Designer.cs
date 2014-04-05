@@ -1,6 +1,6 @@
-﻿namespace ChatUI
+﻿namespace MessageClient
 {
-    partial class MainForm
+    partial class frmLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -77,7 +77,7 @@
             this.label2.Text = "Name already in use";
             this.label2.Visible = false;
             // 
-            // MainForm
+            // frmLogin
             // 
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -89,8 +89,8 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Name = "frmLogin";
+            this.Text = "frmLogin";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

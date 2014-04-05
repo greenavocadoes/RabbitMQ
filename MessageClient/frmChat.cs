@@ -11,9 +11,9 @@ using System.Windows.Forms;
 using MessagePublishing;
 using MessageConsuming;
 
-namespace ChatUI
+namespace MessageClient
 {
-    public partial class Form1 : Form
+    public partial class frmChat : Form
     {
         private MessagePublishing.RabbitMQExchangePublisher queue;
         private RabbitMQExchangeSubscriber consumer;
@@ -24,7 +24,7 @@ namespace ChatUI
         private const String EXCH_NAME = "chatExch";
         delegate void SetTextCallback(string text);
         private String _chatter;
-        public Form1()
+        public frmChat()
         {
             InitializeComponent();
         }

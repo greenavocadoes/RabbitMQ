@@ -1,6 +1,6 @@
-﻿namespace ChatUI
+﻿namespace MessageClient
 {
-    partial class Form1
+    partial class frmChat
     {
         /// <summary>
         /// Required designer variable.
@@ -72,7 +72,7 @@
             this.listBox2.Size = new System.Drawing.Size(123, 340);
             this.listBox2.TabIndex = 3;
             // 
-            // Form1
+            // frmChat
             // 
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -82,8 +82,8 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.listBox1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "frmChat";
+            this.Text = "frmChat";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
