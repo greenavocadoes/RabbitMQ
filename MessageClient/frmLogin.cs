@@ -31,7 +31,7 @@ namespace MessageClient
             {
                 frmChat frm = new frmChat();
                 frm.Text = String.Format("{0} says...", textBox1.Text);
-                frm.Chatter = textBox1.Text;
+                frm.ChatUser = textBox1.Text;
                 frm.Show();
                 this.Visible = false;
             }

@@ -21,11 +21,11 @@ namespace MessageConsuming
         public delegate void onReceiveMessage(byte[] message);
         public event onReceiveMessage onMessageReceived;
 
-        public RabbitMQExchangeSubscriber(string hostName, string exchName, string chatter)
+        public RabbitMQExchangeSubscriber(string hostName, string exchName, string chatUser)
         {
             ConnectionFactory connectionFactory = new ConnectionFactory();
             connectionFactory.HostName = hostName;
-            connectionFactory.ClientProperties.Add("Chatter", chatter);
+            connectionFactory.ClientProperties.Add("ChatUser", chatUser);
             
             Connection = connectionFactory.CreateConnection();
             Model = Connection.CreateModel();

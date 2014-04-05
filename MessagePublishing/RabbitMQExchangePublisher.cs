@@ -17,10 +17,10 @@ namespace MessagePublishing
         private IModel channel;
         private string exch;
         
-        public RabbitMQExchangePublisher(String host, String exchName, String chatter)
+        public RabbitMQExchangePublisher(String host, String exchName, String chatUser)
         {
             factory.HostName = host;            
-            factory.ClientProperties.Add("Chatter", chatter);
+            factory.ClientProperties.Add("ChatUser", chatUser);
             connection = factory.CreateConnection();
             
             

@@ -20,37 +20,37 @@ namespace MetaDataService
         }
                 
 
-        public HashSet<String> getChatterNames()
+        public HashSet<String> getChatUserNames()
         {          
             // Using Hashset to avoid adding dupes
-            HashSet<String> chatterSet = null;
+            HashSet<String> chatUserSet = null;
             if (manager != null)
             {
                 var conns = manager.GetConnections();
                 if (conns != null && conns.Count() > 0)
                 {
-                    chatterSet = new HashSet<string>();
+                    chatUserSet = new HashSet<string>();
                     foreach (var conn in conns)
                     {
-                        var chatter = conn.ClientProperties.PropertiesDictionary["Chatter"] != null ? conn.ClientProperties.PropertiesDictionary["Chatter"].ToString() : String.Empty;
-                        if (!String.IsNullOrEmpty(chatter))
+                        var chatUser = conn.ClientProperties.PropertiesDictionary["ChatUser"] != null ? conn.ClientProperties.PropertiesDictionary["ChatUser"].ToString() : String.Empty;
+                        if (!String.IsNullOrEmpty(chatUser))
                         {
-                            chatterSet.Add(chatter);
+                            chatUserSet.Add(chatUser);
                         }
                     
                     }
                 }
             }
 
-            return chatterSet;            
+            return chatUserSet;            
         }
 
 
         public Boolean isNameAvailable(String name)
         {
-            if (getChatterNames() != null)
+            if (getChatUserNames() != null)
             {
-                return !getChatterNames().Contains(name);
+                return !getChatUserNames().Contains(name);
             }
             return true;
         }

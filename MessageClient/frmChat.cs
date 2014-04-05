@@ -23,29 +23,29 @@ namespace MessageClient
         private const int NODE = 5672;
         private const String EXCH_NAME = "chatExch";
         delegate void SetTextCallback(string text);
-        private String _chatter;
+        private String _chatUser;
         public frmChat()
         {
             InitializeComponent();
         }
 
-        public String Chatter {
+        public String ChatUser {
             get {
-                return _chatter;
+                return _chatUser;
             }
 
             set {
-                _chatter = value;
+                _chatUser = value;
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            queue = new MessagePublishing.RabbitMQExchangePublisher(HOST_NAME, EXCH_NAME, Chatter);
+            queue = new MessagePublishing.RabbitMQExchangePublisher(HOST_NAME, EXCH_NAME, ChatUser);
 
             // Subscribe to the queue
             //create the consumer
-            consumer = new RabbitMQExchangeSubscriber(HOST_NAME, EXCH_NAME, Chatter);
+            consumer = new RabbitMQExchangeSubscriber(HOST_NAME, EXCH_NAME, ChatUser);
 
             //listen for message events
             consumer.onMessageReceived += handleMessage;
@@ -80,7 +80,7 @@ namespace MessageClient
         private void button1_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(this.textBox1.Text))
-                queue.Send(String.Format("{0}: {1}", Chatter, textBox1.Text));
+                queue.Send(String.Format("{0}: {1}", ChatUser, textBox1.Text));
 
             textBox1.Clear();
         }
