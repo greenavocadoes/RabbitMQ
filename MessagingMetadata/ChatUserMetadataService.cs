@@ -7,14 +7,14 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using EasyNetQ.Management.Client;
 
-namespace MetaDataService
+namespace MessagingMetadata
 {
-    public class ChatBrokerService
+    public class ChatUserMetadataService
     {
 
         private ManagementClient manager; 
 
-        public  ChatBrokerService(String host, String user, String password)
+        public  ChatUserMetadataService(String host, String user, String password)
         {
             manager = new ManagementClient(host, user, password);
         }

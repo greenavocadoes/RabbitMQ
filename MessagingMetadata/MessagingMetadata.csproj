@@ -7,8 +7,8 @@
     <ProjectGuid>{90771FD9-0C61-4373-90D5-6DAD552C74A4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MetaDataService</RootNamespace>
-    <AssemblyName>MetaDataService</AssemblyName>
+    <RootNamespace>MessagingMetadata</RootNamespace>
+    <AssemblyName>MessagingMetadata</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -62,7 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChatBrokerService.cs" />
+    <Compile Include="ChatUserMetadataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

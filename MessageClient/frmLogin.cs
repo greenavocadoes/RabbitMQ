@@ -6,18 +6,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MetaDataService;
+using MessagingMetadata;
 
 namespace MessageClient
 {
     public partial class frmLogin : Form
     {
         
-        private ChatBrokerService brokerSerice; 
+        private ChatUserMetadataService brokerSerice; 
         public frmLogin()
         {
             InitializeComponent();
-            brokerSerice = new ChatBrokerService("http://ec2-54-213-74-83.us-west-2.compute.amazonaws.com", "guest", "guest");
+            brokerSerice = new ChatUserMetadataService("http://ec2-54-213-74-83.us-west-2.compute.amazonaws.com", "guest", "guest");
         }
 
         private void MainForm_Load(object sender, EventArgs e)
