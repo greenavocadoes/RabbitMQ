@@ -100,9 +100,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Consumer\Consumer.csproj">
+    <ProjectReference Include="..\MessageConsuming\MessageConsuming.csproj">
       <Project>{7e3c7ecf-4009-46f5-aef3-296caa871f59}</Project>
-      <Name>Consumer</Name>
+      <Name>MessageConsuming</Name>
     </ProjectReference>
     <ProjectReference Include="..\MessagePublishing\MessagePublishing.csproj">
       <Project>{3159d75a-e7c8-44c6-8815-e741453f1d94}</Project>

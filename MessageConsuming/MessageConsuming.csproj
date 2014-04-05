@@ -7,8 +7,8 @@
     <ProjectGuid>{7E3C7ECF-4009-46F5-AEF3-296CAA871F59}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Consumer</RootNamespace>
-    <AssemblyName>Consumer</AssemblyName>
+    <RootNamespace>MessageConsuming</RootNamespace>
+    <AssemblyName>MessageConsuming</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

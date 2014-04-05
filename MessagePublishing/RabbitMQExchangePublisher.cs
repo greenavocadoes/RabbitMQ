@@ -7,7 +7,7 @@ using RabbitMQ.Client;
 
 namespace MessagePublishing
 {
-    public class ExchangePublisher : IDisposable
+    public class RabbitMQExchangePublisher : IDisposable
     {
 
 
@@ -17,7 +17,7 @@ namespace MessagePublishing
         private IModel channel;
         private string exch;
         
-        public ExchangePublisher(String host, String exchName, String chatter)
+        public RabbitMQExchangePublisher(String host, String exchName, String chatter)
         {
             factory.HostName = host;            
             factory.ClientProperties.Add("Chatter", chatter);

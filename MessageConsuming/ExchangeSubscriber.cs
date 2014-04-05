@@ -7,9 +7,9 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Exceptions;
 using System.IO;
 
-namespace Consumer
+namespace MessageConsuming
 {
-    public class ExchangeSubscriber :IDisposable
+    public class RabbitMQExchangeSubscriber :IDisposable
     {
         protected IModel Model;
         protected IConnection Connection;
@@ -21,7 +21,7 @@ namespace Consumer
         public delegate void onReceiveMessage(byte[] message);
         public event onReceiveMessage onMessageReceived;
 
-        public ExchangeSubscriber(string hostName, string exchName, string chatter)
+        public RabbitMQExchangeSubscriber(string hostName, string exchName, string chatter)
         {
             ConnectionFactory connectionFactory = new ConnectionFactory();
             connectionFactory.HostName = hostName;

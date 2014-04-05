@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using MessagePublishing;
-using Consumer;
+using MessageConsuming;
 
 namespace ChatUI
 {
     public partial class Form1 : Form
     {
-        private MessagePublishing.ExchangePublisher queue;
-        private ExchangeSubscriber consumer;
+        private MessagePublishing.RabbitMQExchangePublisher queue;
+        private RabbitMQExchangeSubscriber consumer;
         private const String HOST_NAME = "ec2-54-213-74-83.us-west-2.compute.amazonaws.com";
         // Use a publicly known DNS name here. Ask Ankit if you need one.
         // private const String HOST_NAME = "";
@@ -41,11 +41,11 @@ namespace ChatUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            queue = new MessagePublishing.ExchangePublisher(HOST_NAME, EXCH_NAME, Chatter);
+            queue = new MessagePublishing.RabbitMQExchangePublisher(HOST_NAME, EXCH_NAME, Chatter);
 
             // Subscribe to the queue
             //create the consumer
-            consumer = new ExchangeSubscriber(HOST_NAME, EXCH_NAME, Chatter);
+            consumer = new RabbitMQExchangeSubscriber(HOST_NAME, EXCH_NAME, Chatter);
 
             //listen for message events
             consumer.onMessageReceived += handleMessage;
