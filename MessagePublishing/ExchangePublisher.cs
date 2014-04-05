@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using RabbitMQ.Client;
 
-namespace QueueSend
+namespace MessagePublishing
 {
-    public class QueueSend : IDisposable
+    public class ExchangePublisher : IDisposable
     {
 
 
@@ -17,7 +17,7 @@ namespace QueueSend
         private IModel channel;
         private string exch;
         
-        public QueueSend(String host, String exchName, String chatter)
+        public ExchangePublisher(String host, String exchName, String chatter)
         {
             factory.HostName = host;            
             factory.ClientProperties.Add("Chatter", chatter);

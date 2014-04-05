@@ -7,21 +7,21 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Exceptions;
 using System.IO;
 
-namespace ChatConsumer
+namespace Consumer
 {
-    public class Consumer :IDisposable
+    public class ExchangeSubscriber :IDisposable
     {
         protected IModel Model;
         protected IConnection Connection;
         protected string QueueName;
 
-        protected bool isConsuming;
+        protected bool isListening;
 
         // used to pass messages back to UI for processing
         public delegate void onReceiveMessage(byte[] message);
         public event onReceiveMessage onMessageReceived;
 
-        public Consumer(string hostName, string exchName, string chatter)
+        public ExchangeSubscriber(string hostName, string exchName, string chatter)
         {
             ConnectionFactory connectionFactory = new ConnectionFactory();
             connectionFactory.HostName = hostName;
@@ -40,9 +40,9 @@ namespace ChatConsumer
         //internal delegate to run the queue consumer on a seperate thread
         private delegate void ConsumeDelegate();
 
-        public void StartConsuming()
+        public void StartListening()
         {
-            isConsuming = true;
+            isListening = true;
             ConsumeDelegate c = new ConsumeDelegate(Consume);
             c.BeginInvoke(null, null);
         }
@@ -51,7 +51,7 @@ namespace ChatConsumer
         {
             QueueingBasicConsumer consumer = new QueueingBasicConsumer(Model);
             String consumerTag = Model.BasicConsume(QueueName, false, consumer);
-            while (isConsuming)
+            while (isListening)
             {
                 try
                 {
@@ -63,18 +63,18 @@ namespace ChatConsumer
                     Model.BasicAck(e.DeliveryTag, false);
                 }
                 catch (EndOfStreamException ex) {            	 
-            	    break;
+            	    throw;
             	}
                 catch (OperationInterruptedException ex)
                 {   
-                    break;
+                    throw;
                 }
             }
         }
 
         public void Dispose()
         {
-            isConsuming = false;
+            isListening = false;
             if (Model != null)
                 Model.Close();
             if (Connection != null)

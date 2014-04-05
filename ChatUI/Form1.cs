@@ -8,15 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
-using QueueSend;
-using ChatConsumer;
+using MessagePublishing;
+using Consumer;
 
 namespace ChatUI
 {
     public partial class Form1 : Form
     {
-        private QueueSend.QueueSend queue;
-        private Consumer consumer;
+        private MessagePublishing.ExchangePublisher queue;
+        private ExchangeSubscriber consumer;
         private const String HOST_NAME = "ec2-54-213-74-83.us-west-2.compute.amazonaws.com";
         // Use a publicly known DNS name here. Ask Ankit if you need one.
         // private const String HOST_NAME = "";
@@ -41,17 +41,17 @@ namespace ChatUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            queue = new QueueSend.QueueSend(HOST_NAME, EXCH_NAME, Chatter);
+            queue = new MessagePublishing.ExchangePublisher(HOST_NAME, EXCH_NAME, Chatter);
 
             // Subscribe to the queue
             //create the consumer
-            consumer = new Consumer(HOST_NAME, EXCH_NAME, Chatter);
+            consumer = new ExchangeSubscriber(HOST_NAME, EXCH_NAME, Chatter);
 
             //listen for message events
             consumer.onMessageReceived += handleMessage;
 
             //start consuming
-            consumer.StartConsuming();
+            consumer.StartListening();
         }
 
         private void handleMessage(byte[] message)
