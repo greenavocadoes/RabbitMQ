@@ -87,6 +87,7 @@ namespace MessageClient
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
+            this.consumer.Dispose();
             publisher.Dispose();
             Application.Exit();
         }

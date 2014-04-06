@@ -63,11 +63,11 @@ namespace MessageConsuming
                     //Model.BasicAck(e.DeliveryTag, false);
                 }
                 catch (EndOfStreamException ex) {            	 
-            	    throw;
+            	    break;
             	}
                 catch (OperationInterruptedException ex)
                 {   
-                    throw;
+                    break;
                 }
             }
         }
