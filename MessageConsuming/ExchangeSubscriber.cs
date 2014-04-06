@@ -30,7 +30,7 @@ namespace MessageConsuming
             Connection = connectionFactory.CreateConnection();
             Model = Connection.CreateModel();
             
-            QueueName = Model.QueueDeclare(); ;
+            QueueName = Model.QueueDeclare(String.Format("{0}_queue",chatUser),false,true, true, null)  ;
             Model.ExchangeDeclare(exchName, "fanout");
             Model.QueueBind(QueueName, exchName, "");
                         
@@ -50,7 +50,7 @@ namespace MessageConsuming
         public void Consume()
         {
             QueueingBasicConsumer consumer = new QueueingBasicConsumer(Model);
-            String consumerTag = Model.BasicConsume(QueueName, false, consumer);
+            String consumerTag = Model.BasicConsume(QueueName, true, consumer);
             while (isListening)
             {
                 try
@@ -60,7 +60,7 @@ namespace MessageConsuming
                     byte[] body = e.Body;
                     
                     onMessageReceived(body);
-                    Model.BasicAck(e.DeliveryTag, false);
+                    //Model.BasicAck(e.DeliveryTag, false);
                 }
                 catch (EndOfStreamException ex) {            	 
             	    throw;
